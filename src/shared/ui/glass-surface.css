@@ -1,0 +1,131 @@
+.glass-surface {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: rgb(255 255 255 / var(--glass-frost, 0));
+  box-shadow: inset 0 0 2px 1px #ffffff50, inset 0 1px 2px #ffffff75,
+    0 8px 24px #060c2812;
+}
+
+.glass-surface__filter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glass-surface__content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  border-radius: inherit;
+}
+
+.glass-surface--svg {
+  backdrop-filter: var(--filter-id) saturate(var(--glass-saturation, 1));
+}
+
+.glass-surface--fallback {
+  backdrop-filter: blur(5px) saturate(var(--glass-saturation, 1)) brightness(1.16);
+  -webkit-backdrop-filter: blur(5px) saturate(var(--glass-saturation, 1)) brightness(1.16);
+  background: rgb(255 255 255 / max(0.16, var(--glass-frost, 0)));
+}
+
+.header.header-glass .brand-link {
+  flex: 0 0 auto;
+  min-width: 176px;
+  min-height: 62px;
+  padding: 8px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.glass-logo {
+  --logo-tone: var(--header-tone, 0);
+  position: relative;
+  display: block;
+  width: 176px;
+  height: 42.24px;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 1px 1px rgb(0 15 65 / 0.22))
+    drop-shadow(0 5px 9px rgb(4 20 74 / 0.16));
+  transition: filter 350ms ease;
+}
+
+.header-inner .glass-logo {
+  --logo-tone: 1;
+}
+
+.glass-logo__material,
+.glass-logo__reflection {
+  position: absolute;
+  inset: 0;
+  mask: url("/brand/azuria-logo-branca.svg") center / 100% 100% no-repeat;
+  -webkit-mask: url("/brand/azuria-logo-branca.svg") center / 100% 100% no-repeat;
+}
+
+.glass-logo .glass-logo__material {
+  background: rgb(25 66 176 / calc(0.06 + var(--logo-tone) * 0.44));
+  box-shadow: none;
+}
+
+.glass-logo__reflection {
+  pointer-events: none;
+  background:
+    linear-gradient(112deg, transparent 12%, #ffffffa8 27%, #ffffff0c 37%,
+      #b9d3ff50 48%, #ffffff9c 60%, #ffffff08 72%),
+    linear-gradient(180deg, #ffffff80 0%, #ffffff0a 42%, #284c9460 58%, #d7e8ff60 100%);
+  opacity: calc(0.78 - var(--logo-tone) * 0.19);
+  background-size: 190% 100%, 100% 100%;
+  background-position: 50% 0, 0 0;
+  transition: background-position 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glass-logo__bevel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  opacity: calc(0.92 - var(--logo-tone) * 0.22);
+}
+
+.brand-link:hover .glass-logo__reflection,
+.brand-link:focus-visible .glass-logo__reflection {
+  background-position: 8% 0, 0 0;
+}
+
+.header.header-glass .brand-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 8px;
+}
+
+@media (max-width: 900px) {
+  .header.header-glass .brand-link {
+    min-width: 140px;
+    min-height: 54px;
+    padding: 8px 0;
+  }
+  .glass-logo {
+    width: 140px;
+    height: 33.6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-logo,
+  .glass-logo__reflection {
+    transition: none;
+  }
+}

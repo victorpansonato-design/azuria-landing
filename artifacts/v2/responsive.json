@@ -1,0 +1,226 @@
+[
+  {
+    "h1": 99,
+    "overflow": false,
+    "sections": [
+      {
+        "name": "hero",
+        "width": 309
+      },
+      {
+        "name": "gallery",
+        "width": 309
+      },
+      {
+        "name": "process",
+        "width": 309
+      },
+      {
+        "name": "pricing",
+        "width": 309
+      },
+      {
+        "name": "footer",
+        "width": 309
+      }
+    ],
+    "viewport": 309,
+    "width": 320
+  },
+  {
+    "h1": 112,
+    "overflow": false,
+    "sections": [
+      {
+        "name": "hero",
+        "width": 349
+      },
+      {
+        "name": "gallery",
+        "width": 349
+      },
+      {
+        "name": "process",
+        "width": 349
+      },
+      {
+        "name": "pricing",
+        "width": 349
+      },
+      {
+        "name": "footer",
+        "width": 349
+      }
+    ],
+    "viewport": 349,
+    "width": 360
+  },
+  {
+    "h1": 122,
+    "overflow": false,
+    "sections": [
+      {
+        "name": "hero",
+        "width": 380
+      },
+      {
+        "name": "gallery",
+        "width": 380
+      },
+      {
+        "name": "process",
+        "width": 380
+      },
+      {
+        "name": "pricing",
+        "width": 380
+      },
+      {
+        "name": "footer",
+        "width": 380
+      }
+    ],
+    "viewport": 380,
+    "width": 391
+  },
+  {
+    "h1": 134,
+    "overflow": false,
+    "sections": [
+      {
+        "name": "hero",
+        "width": 419
+      },
+      {
+        "name": "gallery",
+        "width": 419
+      },
+      {
+        "name": "process",
+        "width": 419
+      },
+      {
+        "name": "pricing",
+        "width": 419
+      },
+      {
+        "name": "footer",
+        "width": 419
+      }
+    ],
+    "viewport": 419,
+    "width": 431
+  },
+  {
+    "h1": 175,
+    "overflow": false,
+    "sections": [
+      {
+        "name": "hero",
+        "width": 757
+      },
+      {
+        "name": "gallery",
+        "width": 757
+      },
+      {
+        "name": "process",
+        "width": 757
+      },
+      {
+        "name": "pricing",
+        "width": 757
+      },
+      {
+        "name": "footer",
+        "width": 757
+      }
+    ],
+    "viewport": 757,
+    "width": 768
+  },
+  {
+    "h1": 208,
+    "overflow": false,
+    "sections": [
+      {
+        "name": "hero",
+        "width": 1025
+      },
+      {
+        "name": "gallery",
+        "width": 1025
+      },
+      {
+        "name": "process",
+        "width": 1025
+      },
+      {
+        "name": "pricing",
+        "width": 1025
+      },
+      {
+        "name": "footer",
+        "width": 1025
+      }
+    ],
+    "viewport": 1025,
+    "width": 1025
+  },
+  {
+    "h1": 292,
+    "overflow": false,
+    "sections": [
+      {
+        "name": "hero",
+        "width": 1441
+      },
+      {
+        "name": "gallery",
+        "width": 1441
+      },
+      {
+        "name": "process",
+        "width": 1441
+      },
+      {
+        "name": "pricing",
+        "width": 1441
+      },
+      {
+        "name": "footer",
+        "width": 1441
+      }
+    ],
+    "viewport": 1441,
+    "width": 1441
+  },
+  {
+    "h1": 331,
+    "overflow": false,
+    "sections": [
+      {
+        "name": "hero",
+        "width": 1920
+      },
+      {
+        "name": "gallery",
+        "width": 1920
+      },
+      {
+        "name": "process",
+        "width": 1920
+      },
+      {
+        "name": "pricing",
+        "width": 1920
+      },
+      {
+        "name": "footer",
+        "width": 1920
+      }
+    ],
+    "viewport": 1920,
+    "width": 1920
+  }
+]

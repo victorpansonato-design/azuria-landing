@@ -1,0 +1,209 @@
+.zuri3-companion {
+  width: var(--zuri-size, 76px);
+  height: var(--zuri-size, 76px);
+  transform: translate3d(var(--zuri-x, calc(100vw - 100px)), var(--zuri-y, calc(100dvh - 100px)), 0);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  will-change: transform;
+}
+.zuri3-launcher {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.zuri3-body,
+.zuri3-idle {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 58%;
+  will-change: transform;
+}
+.zuri3-idle {
+  filter: drop-shadow(0 8px 14px #001d641a);
+  animation: zuri3-breathe 5.8s ease-in-out infinite;
+}
+.zuri3-companion .zuri-face {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  rotate: none;
+}
+.zuri3-companion .zuri-gaze {
+  animation: none;
+  transform: translate(var(--zuri-look-x, 0px), var(--zuri-look-y, 0px));
+  transition: transform 160ms ease-out;
+}
+.zuri3-companion .zuri-travel-gaze {
+  transform: none;
+}
+.zuri3-companion .zuri-eyes {
+  animation: zuri3-blink 6.8s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.zuri3-companion[data-interaction="pressed"] .zuri-eyes {
+  animation: none;
+  transform: scaleY(0.68);
+}
+.zuri3-companion[data-interaction="holding"] .zuri-eyes {
+  animation: zuri3-held-blink 2.4s ease-in-out infinite;
+}
+.zuri3-companion[data-interaction="dragging"] .zuri-gaze {
+  transform: translateY(-2px);
+}
+.zuri3-companion[data-interaction="dragging"] .zuri-eyes {
+  animation: none;
+  transform: scaleY(1.08);
+}
+.zuri3-companion[data-interaction="pressed"] .zuri3-idle,
+.zuri3-companion[data-interaction="holding"] .zuri3-idle,
+.zuri3-companion[data-interaction="dragging"] .zuri3-idle {
+  animation-play-state: paused;
+}
+.zuri3-companion[data-interaction="dragging"] .zuri3-launcher,
+.zuri3-companion[data-interaction="holding"] .zuri3-launcher {
+  cursor: grabbing;
+}
+.zuri3-companion .zuri3-speech {
+  bottom: 24%;
+  right: calc(100% + 8px);
+  width: max-content;
+  max-width: 128px;
+  padding: 8px 12px;
+  font-size: 10px;
+  line-height: 1.4;
+  font-weight: 500;
+  border: 1px solid #ffffffb3;
+  border-radius: 14px 14px 3px 14px;
+  box-shadow: 0 4px 20px #00124114;
+  pointer-events: none;
+}
+.zuri3-companion[data-hint-side="right"] .zuri3-speech {
+  left: calc(100% + 8px);
+  right: auto;
+  border-radius: 14px 14px 14px 3px;
+}
+.zuri-panel {
+  width: 280px;
+  max-height: min(380px, calc(100dvh - 140px));
+  bottom: calc(112px + env(safe-area-inset-bottom, 0px));
+  border-radius: 18px;
+  box-shadow: 0 12px 40px #060e8126;
+}
+.zuri-panel-head {
+  padding: 8px 12px;
+}
+.zuri-panel-head strong {
+  font-size: 17px;
+}
+.zuri-panel-head small {
+  font-size: 9px;
+  margin-top: 1px;
+}
+.zuri-panel-head button {
+  width: 44px;
+  height: 44px;
+  font-size: 23px;
+}
+.zuri-panel .zuri-history {
+  padding: 12px;
+}
+.zuri-greeting {
+  font-size: 12px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.zuri-choices {
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.zuri-choices button,
+.zuri-choices a {
+  font-size: 11px;
+  min-height: 44px;
+  padding: 8px 9px;
+  gap: 6px;
+  border-radius: 9px;
+}
+.zuri-message {
+  font-size: 12px;
+  line-height: 1.65;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+.zuri-action {
+  font-size: 11px;
+  margin-top: 8px;
+  min-height: 44px;
+}
+.zuri-references {
+  margin-top: 10px;
+}
+.zuri-references img {
+  height: 92px;
+}
+.zuri-form {
+  padding: 8px;
+  gap: 6px;
+}
+.zuri-form input {
+  font-size: 12px;
+  padding: 8px;
+  height: 44px;
+}
+.zuri-form > button {
+  width: 44px;
+  height: 44px;
+  font-size: 20px;
+}
+.clear-chat {
+  min-height: 36px;
+  padding-bottom: 5px;
+  font-size: 9px;
+}
+@keyframes zuri3-breathe {
+  0%, 100% { transform: translateY(1px) rotate(-1deg); }
+  50% { transform: translateY(-2px) rotate(1.2deg); }
+}
+@keyframes zuri3-blink {
+  0%, 39%, 43%, 78%, 82%, 100% { transform: scaleY(1); }
+  41%, 80% { transform: scaleY(0.08); }
+}
+@keyframes zuri3-held-blink {
+  0%, 100% { transform: scaleY(0.7); }
+  45%, 55% { transform: scaleY(0.12); }
+}
+.page-hidden .zuri3-idle,
+.page-hidden .zuri3-companion .zuri-eyes {
+  animation-play-state: paused;
+}
+@media (max-width: 700px) {
+  .zuri3-companion {
+    --zuri-size: 64px;
+    transform: translate3d(var(--zuri-x, calc(100vw - 80px)), var(--zuri-y, calc(100dvh - 80px)), 0);
+  }
+  .zuri-panel {
+    width: min(300px, calc(100vw - 24px));
+    left: auto;
+    right: 12px;
+    max-height: min(380px, calc(100dvh - 32px));
+    border-radius: 18px;
+  }
+  .zuri-panel .zuri-history {
+    max-height: 240px;
+  }
+  .zuri-form input {
+    font-size: 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zuri3-idle,
+  .zuri3-companion .zuri-eyes {
+    animation: none !important;
+  }
+  .zuri3-companion .zuri-gaze {
+    transition: none;
+  }
+}

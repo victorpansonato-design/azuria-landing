@@ -1,0 +1,23 @@
+{
+  "desktop": {
+    "cls": 0,
+    "frameMedianMs": 13.900000000001455,
+    "frameP95Ms": 243.09999999999857,
+    "frames": 174,
+    "framesOver34Ms": 23,
+    "interactionMs": 1136,
+    "lcpMs": 292,
+    "reducedMotion": false
+  },
+  "mobile": {
+    "cls": 0,
+    "frameMedianMs": 14,
+    "frameP95Ms": 305.59999999999997,
+    "frames": 165,
+    "framesOver34Ms": 24,
+    "interactionMs": 0,
+    "lcpMs": 128,
+    "reducedMotion": false
+  },
+  "note": "Event Timing maximum after two Zuri actions; indicative local run, not field INP. Frame samples include automation overhead."
+}

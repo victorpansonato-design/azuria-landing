@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "brand": "Azuria",
+  "owner": "Victor Capitani",
+  "locale": "pt-BR",
+  "timezone": "America/Sao_Paulo",
+  "mode": "demo",
+  "contacts": {
+    "whatsappDigits": "5511963011381",
+    "whatsappUrl": "https://wa.me/5511963011381",
+    "whatsappDisplay": "(11) 96301-1381",
+    "instagramHandle": "_capitanii_",
+    "instagramUrl": "https://www.instagram.com/_capitanii_/",
+    "instagramVerified": false,
+    "instagramNote": "Perfil _capitanii_ encontrado, nome victor, privado. Identidade do titular e uso como portfólio público ainda dependem de confirmação.",
+    "platformUrl": "https://azuria-three.vercel.app/login",
+    "platformVerified": true,
+    "platformLastObservedStatus": "Página de login carregada no Edge em 04/10/2026",
+    "canonicalBase": null,
+    "instagramProfilePrivate": true
+  },
+  "plan": {
+    "id": "azuria-mensal",
+    "name": "Azuria",
+    "priceCents": 29700,
+    "currency": "BRL",
+    "billing": "monthly-cycle",
+    "deliveriesPerCycle": 4,
+    "staticFeedPerCycle": 8,
+    "carouselFeedPerCycle": 4,
+    "maxPagesPerCarouselIncludingCover": 4,
+    "storyAdaptationsPerCycle": 12,
+    "storyComplementsPerCycle": 12,
+    "approvedDirectionsPerCycle": 1,
+    "perDelivery": {
+      "staticFeed": 2,
+      "carouselFeed": 1,
+      "storyAdaptations": 3,
+      "storyComplements": 3
+    }
+  },
+  "adjustments": {
+    "consolidatedRoundsPerDelivery": 1,
+    "requestWindowBusinessDays": 3,
+    "deadlineStartsNextBusinessDay": true,
+    "ownErrorsConsumeRound": false,
+    "businessWeekDays": [1, 2, 3, 4, 5],
+    "holidayCalendar": null
+  },
+  "extras": {
+    "mode": "request-quote",
+    "approvedPrices": false,
+    "types": ["artes adicionais", "campanhas especiais", "nova direção de arte"]
+  },
+  "checkout": {
+    "conversion": "online-payment",
+    "provider": null,
+    "liveEnabled": false,
+    "collectCardInOwnForm": false,
+    "allowDemoSimulation": true,
+    "demoNotice": "Ambiente de demonstração — nenhum pagamento será realizado.",
+    "releaseOnBrowserReturn": false,
+    "realReleaseRequires": "webhook verificado e idempotente"
+  },
+  "motion": {
+    "wheelMultiplier": 0.85,
+    "lerp": 0.1,
+    "syncTouch": false,
+    "respectReducedMotion": true,
+    "heroDesktopMs": [900, 1100],
+    "heroMobileMs": [650, 850],
+    "nativeScrollbar": true,
+    "slowTouch": false
+  },
+  "undefinedPolicies": [
+    "cancelamento",
+    "reembolso",
+    "renovação automática",
+    "horário de suporte",
+    "SLA",
+    "prazo da primeira entrega",
+    "preços de extras",
+    "antecipação paga",
+    "gateway e meios de pagamento"
+  ],
+  "gallery": {
+    "prototypeContentKind": "reference",
+    "productionRequiresAuthorizedWorks": true,
+    "publicReferenceLabel": "Referência de direção de arte"
+  }
+}

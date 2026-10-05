@@ -1,0 +1,397 @@
+{
+  "version": 1,
+  "engine": "scripted-local-faq",
+  "locale": "pt-BR",
+  "configSource": "config-landing.json",
+  "templateSyntax": "{{chave}}",
+  "derivedVariables": {
+    "price": "Intl.NumberFormat pt-BR BRL, plan.priceCents / 100",
+    "storiesPerCycle": "plan.storyAdaptationsPerCycle + plan.storyComplementsPerCycle",
+    "storiesPerDelivery": "plan.perDelivery.storyAdaptations + plan.perDelivery.storyComplements"
+  },
+  "rules": {
+    "inputMaxChars": 600,
+    "sessionHistoryMaxMessages": 40,
+    "normalizeAccents": true,
+    "tokenBoundaries": true,
+    "matchMultipleIntents": true,
+    "ambiguousPrazo": "Pedir: primeira entrega, ajustes ou atendimento?",
+    "outsideScope": "Não responder por coincidência fraca de token.",
+    "unknown": "Essa parte precisa de uma conversa com o Victor. Quer falar com ele?",
+    "waRequiresUserClick": true,
+    "autoSendHistory": false
+  },
+  "intents": [
+    {
+      "id": "preco",
+      "title": "Preço",
+      "phrases": ["quanto custa", "qual valor", "preco", "qto custa", "297"],
+      "answer": "O plano Azuria custa {{price}} por ciclo mensal, com {{deliveriesPerCycle}} entregas. Posso te mostrar o que está incluído.",
+      "action": "planos"
+    },
+    {
+      "id": "incluido",
+      "title": "O que vem",
+      "phrases": [
+        "o que inclui",
+        "vem o que",
+        "o que recebo",
+        "escopo do plano"
+      ],
+      "answer": "São {{staticFeedPerCycle}} posts estáticos, {{carouselFeedPerCycle}} carrosséis e {{storiesPerCycle}} stories por ciclo, seguindo uma direção de arte aprovada.",
+      "action": "planos"
+    },
+    {
+      "id": "estaticos",
+      "title": "Posts de feed",
+      "phrases": ["posts estaticos", "quantos posts", "feed por mes"],
+      "answer": "O ciclo inclui {{staticFeedPerCycle}} posts estáticos e {{carouselFeedPerCycle}} carrosséis. As páginas de cada carrossel fazem parte daquele post.",
+      "action": "planos"
+    },
+    {
+      "id": "carrossel",
+      "title": "Carrosséis",
+      "phrases": ["carrossel", "carroseis", "paginas", "capa"],
+      "answer": "São {{carouselFeedPerCycle}} carrosséis por ciclo, de até {{maxPagesPerCarouselIncludingCover}} páginas cada, incluindo a capa. Um carrossel é uma publicação com páginas para deslizar.",
+      "action": "planos"
+    },
+    {
+      "id": "stories",
+      "title": "Stories",
+      "phrases": ["stories", "story", "estories", "quantos stories"],
+      "answer": "São {{storiesPerCycle}} stories: {{storyAdaptationsPerCycle}} adaptações e {{storyComplementsPerCycle}} complementos, distribuídos em quatro entregas.",
+      "action": "planos"
+    },
+    {
+      "id": "entregas",
+      "title": "Entregas",
+      "phrases": ["entrega semanal", "por semana", "semanas", "quando libera"],
+      "answer": "O ciclo tem {{deliveriesPerCycle}} entregas. Em cada uma: {{perDelivery.staticFeed}} posts estáticos, {{perDelivery.carouselFeed}} carrossel e {{storiesPerDelivery}} stories. Datas de início precisam ser combinadas no briefing.",
+      "action": "planos"
+    },
+    {
+      "id": "cinco_semanas",
+      "title": "Mês com cinco semanas",
+      "phrases": ["cinco semanas", "5 semanas", "mes longo"],
+      "answer": "O plano é um ciclo mensal com quatro entregas. Um mês com cinco semanas não aumenta automaticamente a quantidade do pacote.",
+      "action": "planos"
+    },
+    {
+      "id": "ajustes",
+      "title": "Ajustes",
+      "phrases": ["revisao", "ajuste", "mudar arte", "corrigir"],
+      "answer": "Há {{consolidatedRoundsPerDelivery}} rodada consolidada de ajustes por entrega, solicitada em até {{requestWindowBusinessDays}} dias úteis. Erros da própria Azuria não consomem essa rodada.",
+      "action": "planos"
+    },
+    {
+      "id": "ajuste_prazo",
+      "title": "Prazo para pedir ajuste",
+      "phrases": [
+        "ate quando ajustar",
+        "prazo de revisao",
+        "3 dias",
+        "dias uteis"
+      ],
+      "answer": "A janela é de {{requestWindowBusinessDays}} dias úteis, começando no próximo dia útil após a entrega. Pedido adicional ou mudança de escopo precisa de orçamento.",
+      "action": "planos"
+    },
+    {
+      "id": "ilimitado",
+      "title": "Limites",
+      "phrases": ["ilimitado", "a vontade", "quantas quiser", "sem limite"],
+      "answer": "O plano tem quantidades e uma direção de arte definidas. Artes adicionais e novas direções podem ser combinadas com o Victor.",
+      "action": "whatsapp"
+    },
+    {
+      "id": "direcao",
+      "title": "Direção de arte",
+      "phrases": [
+        "direcao visual",
+        "estilo aprovado",
+        "identidade visual",
+        "cores da marca"
+      ],
+      "answer": "Uma direção aprovada orienta as peças do ciclo. Ela considera sua marca, suas referências e o que você quer comunicar; não precisa imitar o azul da Azuria.",
+      "action": "estilos"
+    },
+    {
+      "id": "trocar_estilo",
+      "title": "Outra direção",
+      "phrases": [
+        "trocar estilo",
+        "mudar direcao",
+        "dois estilos",
+        "varias direcoes"
+      ],
+      "answer": "O ciclo inclui uma direção aprovada. Para uma nova direção ou campanha com outro escopo, o Victor pode montar um orçamento.",
+      "action": "whatsapp"
+    },
+    {
+      "id": "nichos",
+      "title": "Segmentos",
+      "phrases": [
+        "qual nicho",
+        "meu ramo",
+        "atende restaurante",
+        "pet shop",
+        "semijoias",
+        "qualquer negocio"
+      ],
+      "answer": "A proposta atende diferentes negócios. O segmento ajuda no briefing, mas não define sozinho o estilo. Qual sensação você quer transmitir?",
+      "action": "curadoria"
+    },
+    {
+      "id": "curadoria",
+      "title": "Escolher estilo",
+      "phrases": [
+        "me mostra um estilo",
+        "recomenda estilo",
+        "qual estilo escolher",
+        "estetica"
+      ],
+      "answer": "Me diga qual é seu negócio e se você quer algo elegante, ousado, divertido, leve ou inesperado. Eu mostro referências que combinam com essa intenção.",
+      "action": "curadoria"
+    },
+    {
+      "id": "referencias",
+      "title": "Referências da galeria",
+      "phrases": [
+        "essas artes sao suas",
+        "portfolio",
+        "pinterest",
+        "referencias",
+        "clientes da galeria"
+      ],
+      "answer": "A galeria deste protótipo é uma curadoria de referências de direção de arte. Ela não apresenta todas essas marcas como clientes da Azuria.",
+      "action": "estilos"
+    },
+    {
+      "id": "artes_finais",
+      "title": "Conteúdo próprio",
+      "phrases": [
+        "minhas artes",
+        "vai ser igual",
+        "copia de referencia",
+        "personalizado"
+      ],
+      "answer": "Referências orientam linguagem, hierarquia e atmosfera. O briefing e a direção da sua marca orientam suas peças; a proposta não é copiar um anúncio de outra empresa.",
+      "action": "processo"
+    },
+    {
+      "id": "como_funciona",
+      "title": "Processo",
+      "phrases": ["como funciona", "comecar", "primeiro passo", "briefing"],
+      "answer": "Você apresenta sua marca e referências, define a direção com a Azuria e recebe o conteúdo organizado em quatro entregas por ciclo.",
+      "action": "processo"
+    },
+    {
+      "id": "dados_marca",
+      "title": "Materiais",
+      "phrases": [
+        "o que preciso mandar",
+        "mandar fotos",
+        "minha logo",
+        "meus produtos"
+      ],
+      "answer": "Prepare informações do negócio, identidade, produtos, fotos e referências que você já tem. O Victor confirma os materiais necessários para seu caso.",
+      "action": "processo"
+    },
+    {
+      "id": "sem_fotos",
+      "title": "Faltam materiais",
+      "phrases": [
+        "nao tenho foto",
+        "sem logotipo",
+        "sem identidade",
+        "criar logo"
+      ],
+      "answer": "O Victor precisa entender o que está faltando e combinar o escopo. Não vou prometer criação de logo ou fotografia como item automático deste plano.",
+      "action": "whatsapp"
+    },
+    {
+      "id": "legendas",
+      "title": "Legendas",
+      "phrases": ["legenda", "texto da postagem", "copy"],
+      "answer": "A proposta mostra as legendas junto aos conteúdos no portal, para você consultar e copiar. O escopo de conteúdos especiais pode ser alinhado no briefing.",
+      "action": "processo"
+    },
+    {
+      "id": "download",
+      "title": "Baixar",
+      "phrases": ["baixar", "download", "salvar imagem", "arquivo"],
+      "answer": "No portal, você abre a peça e encontra arte, legenda e download. A galeria de referências da landing serve para explorar estilos; não é um pacote de imagens para baixar.",
+      "action": "processo"
+    },
+    {
+      "id": "publicacao",
+      "title": "Publicação no Instagram",
+      "phrases": [
+        "publica por mim",
+        "automatico instagram",
+        "agendar postagem",
+        "posta sozinho"
+      ],
+      "answer": "A oferta atual entrega o conteúdo organizado. Publicação ou agendamento automático no Instagram não estão incluídos como função comprovada.",
+      "action": "processo"
+    },
+    {
+      "id": "seguidores",
+      "title": "Resultados",
+      "phrases": [
+        "vender mais",
+        "ganhar seguidores",
+        "resultado garantido",
+        "engajamento"
+      ],
+      "answer": "A Azuria trabalha a qualidade visual e a organização do conteúdo. Não posso garantir vendas, alcance ou seguidores; isso também depende do negócio, da oferta e da distribuição.",
+      "action": "processo"
+    },
+    {
+      "id": "plataforma",
+      "title": "Acesso ao portal",
+      "phrases": ["portal", "plataforma", "onde recebo", "login", "entrar"],
+      "answer": "Os conteúdos ficam organizados no portal. O link de acesso precisa estar válido na configuração; este ambiente ainda é uma demonstração.",
+      "action": "portal"
+    },
+    {
+      "id": "gerador",
+      "title": "Uso de IA",
+      "phrases": [
+        "gerar sozinho",
+        "gerador",
+        "tem gpt",
+        "inteligencia artificial",
+        "chatgpt"
+      ],
+      "answer": "Aqui eu sou uma ajuda roteirizada sobre a Azuria. O portal atual apresenta entregas e referências; não vou prometer geração automática ilimitada pelo cliente.",
+      "action": "processo"
+    },
+    {
+      "id": "contratar",
+      "title": "Contratar",
+      "phrases": ["assinar", "comprar", "contratar", "fechar plano"],
+      "answer": "Você pode revisar o plano e seguir para a contratação. Neste protótipo, o checkout é demonstrativo e nenhum pagamento é realizado.",
+      "action": "contratar"
+    },
+    {
+      "id": "pagamento",
+      "title": "Pagamento",
+      "phrases": ["pagar", "cartao", "pix", "boleto", "formas de pagamento"],
+      "answer": "A direção do produto é pagamento online, mas o gateway e os meios disponíveis ainda serão definidos. O checkout atual é uma simulação.",
+      "action": "contratar"
+    },
+    {
+      "id": "cobranca",
+      "title": "Cobrança recorrente",
+      "phrases": ["renova", "recorrente", "cobrado todo mes", "mensalidade"],
+      "answer": "O preço é por ciclo mensal. Renovação e cobrança automática precisam das condições e da integração de pagamento definidas com o Victor.",
+      "action": "whatsapp"
+    },
+    {
+      "id": "barato",
+      "title": "Outro preço",
+      "phrases": ["197", "desconto", "mais barato", "promocao"],
+      "answer": "A oferta configurada é {{price}} por ciclo. Não tenho desconto ou outro pacote aprovado para prometer por aqui.",
+      "action": "planos"
+    },
+    {
+      "id": "extras",
+      "title": "Extras",
+      "phrases": [
+        "artes adicionais",
+        "mais artes",
+        "campanha especial",
+        "sob medida",
+        "orçamento"
+      ],
+      "answer": "Artes adicionais, campanhas especiais e novas direções são sob orçamento. Quer conversar com o Victor sobre seu projeto?",
+      "action": "whatsapp"
+    },
+    {
+      "id": "prazo_inicial",
+      "title": "Primeira entrega",
+      "phrases": [
+        "primeira entrega",
+        "quanto tempo recebo",
+        "prazo para criar",
+        "em 24h"
+      ],
+      "answer": "O prazo inicial ainda precisa ser alinhado com o Victor e com o briefing. Não tenho um prazo fixo aprovado para te informar.",
+      "action": "whatsapp"
+    },
+    {
+      "id": "cancelamento",
+      "title": "Cancelar",
+      "phrases": ["cancelar", "cancelamento", "fidelidade", "cancele"],
+      "answer": "As condições de cancelamento ainda precisam ser confirmadas com o Victor. Não vou inventar uma política para você.",
+      "action": "whatsapp"
+    },
+    {
+      "id": "reembolso",
+      "title": "Reembolso",
+      "phrases": ["reembolso", "devolver dinheiro", "garantia", "estorno"],
+      "answer": "A política de reembolso ainda não está definida no material atual. O Victor pode confirmar as condições antes de uma contratação real.",
+      "action": "whatsapp"
+    },
+    {
+      "id": "suporte",
+      "title": "Atendimento",
+      "phrases": ["suporte", "horario", "demora responder", "sla"],
+      "answer": "Você pode falar com o Victor pelo WhatsApp. Horário e prazo de resposta ainda não estão definidos; não prometo atendimento 24 horas.",
+      "action": "whatsapp"
+    },
+    {
+      "id": "antecipacao",
+      "title": "Conteúdo bloqueado",
+      "phrases": ["bloqueado", "antecipar", "liberar tudo", "semana futura"],
+      "answer": "O portal organiza entregas futuras e pode mostrar previews bloqueados. Antecipação precisa ser combinada com o Victor; não há preço de antecipação aprovado.",
+      "action": "whatsapp"
+    },
+    {
+      "id": "victor",
+      "title": "Quem cria",
+      "phrases": ["quem e victor", "quem somos", "equipe", "quem faz"],
+      "answer": "A Azuria é um projeto do Victor Capitani para unir direção de arte e uma rotina de conteúdo mais organizada para pequenos negócios.",
+      "action": "instagram"
+    },
+    {
+      "id": "contato",
+      "title": "Contato humano",
+      "phrases": ["falar com victor", "whatsapp", "humano", "atendente"],
+      "answer": "Posso abrir o WhatsApp do Victor quando você clicar em Falar com Victor. Eu não envio mensagens ou o histórico da conversa automaticamente.",
+      "action": "whatsapp"
+    },
+    {
+      "id": "privacidade",
+      "title": "Dados",
+      "phrases": ["meus dados", "privacidade", "salva conversa", "historico"],
+      "answer": "Neste protótipo, a ajuda deve manter apenas contexto local da sessão e permitir limpar a conversa. A política do produto final precisa ser definida antes do lançamento.",
+      "action": "privacidade"
+    },
+    {
+      "id": "problema",
+      "title": "Erro no portal",
+      "phrases": [
+        "nao consigo entrar",
+        "erro no login",
+        "senha",
+        "esqueci senha",
+        "link nao abre"
+      ],
+      "answer": "No protótipo, não posso alterar senha ou resolver sua conta. O endereço do portal precisa ser confirmado; o Victor pode ajudar com acesso.",
+      "action": "whatsapp"
+    },
+    {
+      "id": "fora_escopo",
+      "title": "Fora da Azuria",
+      "phrases": [
+        "politica",
+        "medicina",
+        "receita de bolo",
+        "previsao do tempo"
+      ],
+      "answer": "Posso ajudar com a Azuria, os estilos e o plano. Para outros assuntos, não consigo orientar por aqui.",
+      "action": "none"
+    }
+  ]
+}

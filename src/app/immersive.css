@@ -1,0 +1,117 @@
+/* Azuria: continuous material, light, and cinematic navigation. */
+.header.header-glass {
+  --header-tone: 0;
+}
+.header.header-inner { --header-tone: 1; }
+.header .desktop-nav {
+  background: rgb(8 25 77 / calc(.10 + var(--header-tone, 0) * .84));
+  border-color: rgb(255 255 255 / calc(.25 - var(--header-tone, 0) * .12));
+  color: #fff;
+  box-shadow: 0 5px 25px rgb(0 12 55 / calc(var(--header-tone, 0) * .10));
+  transition: background-color 160ms linear, border-color 160ms linear, box-shadow 160ms linear;
+}
+.header .header-actions {
+  padding: 4px 4px 4px 18px;
+  border-radius: 100px;
+  color: #fff;
+  background: rgb(8 25 77 / calc(var(--header-tone, 0) * .94));
+  transition: background-color 160ms linear;
+}
+.hero2 .bluefield-material {
+  background-image: url("/brand/azuria-blue-field-4k.webp");
+}
+.hero2 .bluefield canvas { opacity: 0; transition: opacity 700ms ease; }
+.hero2 .bluefield-live canvas { opacity: 1; }
+.hero2 .bluefield-live .bluefield-material { animation-play-state: paused; }
+.hero2 .hero2-foot { border-top: 0; }
+.hero2 .hero2-stage::after {
+  box-shadow: 0 -35px 100px #f7f9ff10;
+}
+
+@property --iris { syntax: '<percentage>'; inherits: false; initial-value: 150%; }
+.plan-vignette {
+  --iris: 150%;
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  color: #eff6ff;
+  background: #020a39 url('/brand/azuria-blue-field-mobile.webp') center / cover;
+  mask-image: radial-gradient(circle at 50% 50%, transparent 0%, transparent var(--iris), #000 calc(var(--iris) + 10%), #000 100%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 0%, transparent var(--iris), #000 calc(var(--iris) + 10%), #000 100%);
+}
+.plan-vignette-active { pointer-events: auto; }
+.plan-vignette span { font: 500 clamp(24px, 4vw, 64px) var(--font-instrument), sans-serif; letter-spacing: -.05em; }
+
+.pricing2.pricing3 {
+  isolation: isolate;
+  background: #032080;
+  padding-top: clamp(85px, 9vw, 150px);
+}
+.pricing3-material {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(115deg, #00105fbb 5%, #001a70cc 55%, #002775bb), url('/brand/azuria-blue-field-4k.webp') center / cover;
+}
+.pricing3 .pricing2-title { display: grid; grid-template-columns: 1.4fr 1fr; gap: 0 7vw; align-items: end; }
+.pricing3 .pricing2-title > .eyebrow { grid-column: 1 / -1; color: #d3e5ff; font-size: 12px; }
+.pricing3 .pricing2-title h2 { font-size: clamp(56px, 6.5vw, 116px); line-height: .98; }
+.pricing3 .pricing2-title > p { max-width: 340px; font-size: 15px; color: #e5eeff; margin-bottom: 8px; }
+.pricing3 .pricing2-offer { grid-template-columns: 1.1fr 1fr; gap: 7vw; margin-top: 48px; border-top: 0; padding-top: 0; align-items: center; }
+.pricing3 .pricing2-price { padding: 25px 0 35px; }
+.pricing3 .pricing2-price > .pricing3-label { font-size: 11px; letter-spacing: .1em; font-weight: 650; color: #c7e4ff; }
+.pricing3 .pricing2-price > .pricing3-number { margin: 24px 0 18px; gap: 14px; }
+.pricing3 .pricing2-price strong { font-size: clamp(160px, 21vw, 360px); font-weight: 550; letter-spacing: -.085em; color: #fff; text-shadow: 0 8px 60px #00083030; }
+.pricing3 .pricing2-price sup { font-size: clamp(27px, 3vw, 48px); padding-top: 20px; }
+.pricing3 .pricing2-price > .pricing3-period { display: block; font-size: 15px; letter-spacing: 0; font-weight: 650; margin-bottom: 28px; }
+.pricing3 .pricing2-price p { font-size: 15px; color: #e2eeff; line-height: 1.7; }
+.pricing3 .pricing2-price .button { box-shadow: 0 8px 35px #02105855; font-size: 15px; min-height: 62px; }
+.pricing3 .pricing2-price small { color: #e1ebff; font-size: 11px; max-width: 340px; line-height: 1.6; }
+.pricing3 .pricing2-scope { background: #f7faff; color: #0b2260; border-radius: 28px; padding: clamp(26px, 3.4vw, 54px); box-shadow: 0 25px 80px #000b4533; }
+.pricing3 .pricing2-scope h3 { font-size: clamp(27px, 3vw, 45px); }
+.pricing3-quantities { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 28px 0; }
+.pricing3-quantities > div { display: flex; flex-direction: column-reverse; }
+.pricing3-quantities dd { margin: 0; color: #164bea; font: 600 clamp(42px, 5vw, 76px)/1 var(--font-instrument), sans-serif; letter-spacing: -.06em; }
+.pricing3-quantities dt { font-size: 12px; margin-top: 8px; font-weight: 600; }
+.pricing3 .pricing2-scope .pricing3-delivery { font-size: 13px; line-height: 1.7; font-weight: 600; }
+.pricing3 .pricing2-scope .included-list { margin-top: 24px; border-color: #d6e0f4; }
+.pricing3 .pricing2-scope .included-list li { font-size: 12px; line-height: 1.55; border-color: #d6e0f4; padding: 14px 0; }
+.pricing3 .pricing2-scope .included-list li > span { color: #164bea; }
+.pricing3 .pricing2-scope > span { color: #4b5e83; font-size: 11px; line-height: 1.5; display: block; }
+.pricing3 .pricing2-bespoke { border-color: #dbe9ff55; margin-top: 60px; }
+.pricing3 .pricing2-bespoke p, .pricing3 .pricing2-bespoke > .bespoke-note { color: #d8e6ff; }
+
+@media (max-width: 899px) {
+  .hero2 .bluefield-material { background-image: url('/brand/azuria-blue-field-mobile.webp'); }
+  .header .header-actions { padding: 3px 3px 3px 12px; }
+  .pricing3-material { background-image: linear-gradient(115deg, #00105fb0, #001a70dd), url('/brand/azuria-blue-field-mobile.webp'); }
+  .pricing3 .pricing2-title { display: block; }
+  .pricing3 .pricing2-title h2 { font-size: clamp(45px, 8.5vw, 72px); }
+  .pricing3 .pricing2-title > p { margin-top: 24px; font-size: 14px; }
+  .pricing3 .pricing2-offer { grid-template-columns: 1fr; gap: 22px; margin-top: 32px; }
+  .pricing3 .pricing2-price { padding: 10px 0 20px; }
+  .pricing3 .pricing2-price strong { font-size: clamp(145px, 32vw, 265px); }
+  .pricing3 .pricing2-price sup { font-size: 28px; }
+  .pricing3 .pricing2-price > .pricing3-period { font-size: 14px; }
+  .pricing3 .pricing2-price .button { width: 100%; max-width: 430px; padding: 17px 22px; font-size: 14px; gap: 20px; }
+  .pricing3 .pricing2-scope { border-radius: 22px; padding: 28px; }
+  .pricing3 .pricing2-scope h3 { font-size: 32px; }
+  .pricing3-quantities dd { font-size: 58px; }
+  .pricing3 .pricing2-bespoke { margin-top: 42px; }
+}
+@media (max-width: 360px) {
+  .pricing3 .pricing2-scope { padding: 22px; }
+  .pricing3-quantities { gap: 10px; }
+  .pricing3-quantities dd { font-size: 47px; }
+  .pricing3-quantities dt { font-size: 10px; }
+  .pricing3 .pricing2-price .button { font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero2 .bluefield-material { animation: none; }
+  .header .desktop-nav, .header .header-actions { transition: none; }
+  .plan-vignette { display: none; }
+}

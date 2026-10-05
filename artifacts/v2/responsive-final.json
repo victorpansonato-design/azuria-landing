@@ -1,0 +1,226 @@
+[
+  {
+    "clientWidth": 320,
+    "rail": "block",
+    "scrollWidth": 320,
+    "sections": [
+      {
+        "scene": "hero",
+        "width": 320.370361328125
+      },
+      {
+        "scene": "gallery",
+        "width": 320.370361328125
+      },
+      {
+        "scene": "process",
+        "width": 320.370361328125
+      },
+      {
+        "scene": "pricing",
+        "width": 320.370361328125
+      },
+      {
+        "scene": "footer",
+        "width": 320.370361328125
+      }
+    ],
+    "width": 320
+  },
+  {
+    "clientWidth": 360,
+    "rail": "block",
+    "scrollWidth": 360,
+    "sections": [
+      {
+        "scene": "hero",
+        "width": 360.1851806640625
+      },
+      {
+        "scene": "gallery",
+        "width": 360.1851806640625
+      },
+      {
+        "scene": "process",
+        "width": 360.1851806640625
+      },
+      {
+        "scene": "pricing",
+        "width": 360.1851806640625
+      },
+      {
+        "scene": "footer",
+        "width": 360.1851806640625
+      }
+    ],
+    "width": 360
+  },
+  {
+    "clientWidth": 391,
+    "rail": "block",
+    "scrollWidth": 391,
+    "sections": [
+      {
+        "scene": "hero",
+        "width": 390.74072265625
+      },
+      {
+        "scene": "gallery",
+        "width": 390.74072265625
+      },
+      {
+        "scene": "process",
+        "width": 390.74072265625
+      },
+      {
+        "scene": "pricing",
+        "width": 390.74072265625
+      },
+      {
+        "scene": "footer",
+        "width": 390.74072265625
+      }
+    ],
+    "width": 391
+  },
+  {
+    "clientWidth": 431,
+    "rail": "block",
+    "scrollWidth": 431,
+    "sections": [
+      {
+        "scene": "hero",
+        "width": 430.5555419921875
+      },
+      {
+        "scene": "gallery",
+        "width": 430.5555419921875
+      },
+      {
+        "scene": "process",
+        "width": 430.5555419921875
+      },
+      {
+        "scene": "pricing",
+        "width": 430.5555419921875
+      },
+      {
+        "scene": "footer",
+        "width": 430.5555419921875
+      }
+    ],
+    "width": 431
+  },
+  {
+    "clientWidth": 768,
+    "rail": "block",
+    "scrollWidth": 768,
+    "sections": [
+      {
+        "scene": "hero",
+        "width": 768.5184936523438
+      },
+      {
+        "scene": "gallery",
+        "width": 768.5184936523438
+      },
+      {
+        "scene": "process",
+        "width": 768.5184936523438
+      },
+      {
+        "scene": "pricing",
+        "width": 768.5184936523438
+      },
+      {
+        "scene": "footer",
+        "width": 768.5184936523438
+      }
+    ],
+    "width": 768
+  },
+  {
+    "clientWidth": 1025,
+    "rail": "block",
+    "scrollWidth": 1025,
+    "sections": [
+      {
+        "scene": "hero",
+        "width": 1025
+      },
+      {
+        "scene": "gallery",
+        "width": 1025
+      },
+      {
+        "scene": "process",
+        "width": 1025
+      },
+      {
+        "scene": "pricing",
+        "width": 1025
+      },
+      {
+        "scene": "footer",
+        "width": 1025
+      }
+    ],
+    "width": 1025
+  },
+  {
+    "clientWidth": 1441,
+    "rail": "block",
+    "scrollWidth": 1441,
+    "sections": [
+      {
+        "scene": "hero",
+        "width": 1440.74072265625
+      },
+      {
+        "scene": "gallery",
+        "width": 1440.74072265625
+      },
+      {
+        "scene": "process",
+        "width": 1440.74072265625
+      },
+      {
+        "scene": "pricing",
+        "width": 1440.74072265625
+      },
+      {
+        "scene": "footer",
+        "width": 1440.74072265625
+      }
+    ],
+    "width": 1441
+  },
+  {
+    "clientWidth": 1920,
+    "rail": "block",
+    "scrollWidth": 1920,
+    "sections": [
+      {
+        "scene": "hero",
+        "width": 1920.370361328125
+      },
+      {
+        "scene": "gallery",
+        "width": 1920.370361328125
+      },
+      {
+        "scene": "process",
+        "width": 1920.370361328125
+      },
+      {
+        "scene": "pricing",
+        "width": 1920.370361328125
+      },
+      {
+        "scene": "footer",
+        "width": 1920.370361328125
+      }
+    ],
+    "width": 1920
+  }
+]
