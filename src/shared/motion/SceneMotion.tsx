@@ -140,7 +140,7 @@ export function SceneMotion() {
     } catch {
       /* Storage can be unavailable in private sessions. */
     }
-    const restored = reload && saved !== null;
+    const restored = reload && saved !== null && !location.hash;
     const position = restored ? (saved ?? scrollY) : scrollY;
     const play =
       firstHome &&

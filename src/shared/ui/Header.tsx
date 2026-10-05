@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Logo } from "./Logo";
-import { GlassLogo } from "./GlassSurface";
+import { GlassSurface } from "./GlassSurface";
 import { Arrow } from "./Icons";
 import { Modal } from "./Modal";
 import { platformUrl, whatsapp } from "@/data/business";
@@ -22,7 +22,18 @@ export function Header() {
     <>
       <header className={`header header-glass ${pathname !== "/" ? "header-inner" : ""}`}>
         <Link href="/" className="brand-link" aria-label="Azuria, início">
-          <GlassLogo />
+          <GlassSurface
+            width="100%"
+            height="100%"
+            borderRadius={100}
+            borderWidth={0.07}
+            backgroundOpacity={0.04}
+            saturation={1.45}
+            distortionScale={-180}
+            className="header-brand-glass"
+          >
+            <Logo white />
+          </GlassSurface>
         </Link>
         <nav aria-label="Principal" className="desktop-nav">
           {links.map(([name, href]) =>

@@ -190,8 +190,8 @@ export function ZuriCompanion({
       const horizontal = Math.abs(active.vx);
       const vertical = Math.abs(active.vy);
       model.rotationTarget = clamp(active.vx * 15, -28, 28);
-      model.sxTarget = clamp(1 + horizontal * 0.1 - vertical * 0.075, 0.81, 1.22);
-      model.syTarget = clamp(1 + vertical * 0.12 - horizontal * 0.075, 0.82, 1.27);
+      model.sxTarget = clamp(1 + horizontal * 0.16 - vertical * 0.12, 0.73, 1.42);
+      model.syTarget = clamp(1 + vertical * 0.20 - horizontal * 0.12, 0.74, 1.58);
       wake();
     }
 

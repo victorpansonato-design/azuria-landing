@@ -1,0 +1,69 @@
+.universe3 {
+  scroll-margin-top: -92px;
+  --universe-p: 0;
+  background: #02061a;
+  color: #f2f6ff;
+  position: relative;
+  isolation: isolate;
+}
+.universe3-stage { position: relative; height: 100svh; min-height: 720px; overflow: hidden; isolation: isolate; }
+.universe3-atmosphere { position: absolute; z-index: -2; inset: 0; background: radial-gradient(ellipse at 72% 45%, #0c28704d, transparent 57%), radial-gradient(ellipse at 60% 90%, #164bea22, transparent 60%), #02061a; }
+.universe3-stage::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .13; background: url('/brand/azuria-grain.png') repeat; z-index: 2; }
+.universe3-stage::after { content: ''; position: absolute; inset: auto 0 0; height: 18%; background: linear-gradient(transparent, #02061a); pointer-events: none; }
+.universe3-top { position: relative; z-index: 3; display: flex; align-items: center; justify-content: space-between; padding: 115px var(--page-pad) 0; }
+.universe3-top .eyebrow { font-size: 11px; color: #a6bcec; margin: 0; }
+.universe3-top > span + span { font-size: 9px; letter-spacing: .13em; color: #8094c3; }
+.universe3-sculpture { position: absolute; left: 32%; top: 3%; width: 76%; height: 95%; pointer-events: none; z-index: 0; }
+.universe3-sculpture canvas { display: block; position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 700ms; }
+.universe3-sculpture canvas.portal-ready { opacity: 1; }
+.universe3-fallback { position: absolute; width: 62%; aspect-ratio: 1; left: 22%; top: 18%; border-radius: 47% 53% 42% 58%; background: url('/brand/azuria-blue-field-mobile.webp') center / cover; box-shadow: inset -25px -25px 80px #01072be0, inset 20px 18px 35px #a9d9ff88, 0 0 100px #164bea33; mask-image: radial-gradient(ellipse at center, transparent 35%, #000 39%); transform: rotate(-22deg); }
+.universe3-sculpture:has(.portal-ready) .universe3-fallback { visibility: hidden; }
+.universe3-copy { position: absolute; z-index: 3; inset: 25% auto 18% var(--page-pad); width: 55%; max-width: 900px; }
+.universe3-chapter { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; will-change: opacity, transform; }
+.universe3-chapter + .universe3-chapter { opacity: 0; pointer-events: none; }
+.universe3-chapter > span { font-size: 11px; color: #809ace; margin-bottom: 24px; }
+.universe3-chapter h3 { font-size: clamp(68px, 7.4vw, 145px); font-weight: 500; line-height: .96; letter-spacing: -.062em; }
+.universe3-chapter h3 em { color: #79a8ff; }
+.universe3-chapter-1 h3 { font-size: clamp(60px, 6.5vw, 120px); }
+.universe3-chapter p { font-size: 14px; line-height: 1.75; color: #bdcbea; max-width: 350px; margin-top: 32px; }
+.universe3-cta { display: inline-flex; align-items: center; gap: 28px; margin-top: 22px; font-size: 12px; color: #f3f7ff; min-height: 44px; border-bottom: 1px solid #739fff80; }
+.universe3-ribbon { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; fill: none; stroke: #245de9; stroke-width: 3; opacity: .65; pointer-events: none; }
+.universe3-ribbon path { stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--universe-p)); }
+.universe3-bottom { display: flex; position: absolute; z-index: 3; bottom: 35px; left: var(--page-pad); right: var(--page-pad); justify-content: space-between; align-items: center; }
+.universe3-bottom nav { display: flex; gap: 24px; }
+.universe3-bottom button { display: flex; align-items: center; gap: 10px; padding: 12px 0; min-height: 44px; font-size: 11px; color: #8093bf; }
+.universe3-bottom button > span { font-size: 9px; opacity: .7; }
+.universe3-bottom button i { width: 5px; height: 5px; border-radius: 50%; background: transparent; }
+.universe3-bottom button[aria-current] { color: #f4f8ff; }
+.universe3-bottom button[aria-current] i { background: #7caaff; box-shadow: 0 0 12px #619eff; }
+.universe3-bottom > span { font-size: 10px; color: #8398c3; padding-right: 30px; }
+.universe3-author { position: relative; z-index: 4; background: #02061a; padding: 60px var(--page-pad) 90px; border-top: 1px solid #8baeff22; }
+.universe3-author > .eyebrow { font-size: 11px; color: #88a1d0; }
+.universe3-author > div { display: grid; grid-template-columns: 1.3fr 1fr .65fr; gap: 6vw; align-items: center; }
+.universe3-author h3 { font-size: clamp(35px, 4vw, 65px); font-weight: 500; }
+.universe3-author h3 em { color: #719eff; }
+.universe3-author p { font-size: 12px; line-height: 1.8; color: #a7b9db; max-width: 410px; }
+.universe3-author a { display: flex; align-items: center; gap: 25px; font-size: 12px; min-height: 44px; }
+@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+  .universe3-stage { position: sticky; top: 0; }
+  .universe3-author { margin-top: 230svh; }
+}
+@media (max-width: 899px), (prefers-reduced-motion: reduce) {
+  .universe3-stage { height: auto; min-height: 0; padding-bottom: 50px; }
+  .universe3-top { padding-top: 85px; }
+  .universe3-top > span + span { display: none; }
+  .universe3-sculpture { position: relative; left: 0; top: 0; width: 100%; height: clamp(330px, 65vw, 650px); }
+  .universe3-fallback { width: 55%; top: 8%; }
+  .universe3-copy { position: relative; inset: auto; width: auto; max-width: none; padding: 0 var(--page-pad); margin-top: -35px; }
+  .universe3-chapter, .universe3-chapter + .universe3-chapter { position: relative; opacity: 1 !important; transform: none !important; pointer-events: auto !important; padding: 38px 0; border-bottom: 1px solid #8baeff22; }
+  .universe3-chapter > span { margin-bottom: 20px; }
+  .universe3-chapter h3 { font-size: clamp(46px, 9vw, 85px); }
+  .universe3-chapter-1 h3 { font-size: clamp(40px, 7.8vw, 75px); }
+  .universe3-chapter p { margin-top: 22px; max-width: 420px; font-size: 14px; }
+  .universe3-bottom { display: none; }
+  .universe3-author { padding: 40px var(--page-pad) 65px; }
+  .universe3-author > div { grid-template-columns: 1fr; gap: 24px; }
+  .universe3-author h3 { font-size: 43px; }
+  .universe3-author p { font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) { .universe3-sculpture canvas { transition: none; }.universe3-ribbon { display: none; } }

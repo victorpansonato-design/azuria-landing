@@ -49,7 +49,7 @@
 .pricing2.pricing3 {
   isolation: isolate;
   background: #032080;
-  padding-top: clamp(85px, 9vw, 150px);
+  padding-top: clamp(95px, 6vw, 118px);
 }
 .pricing3-material {
   position: absolute;
@@ -59,13 +59,13 @@
 }
 .pricing3 .pricing2-title { display: grid; grid-template-columns: 1.4fr 1fr; gap: 0 7vw; align-items: end; }
 .pricing3 .pricing2-title > .eyebrow { grid-column: 1 / -1; color: #d3e5ff; font-size: 12px; }
-.pricing3 .pricing2-title h2 { font-size: clamp(56px, 6.5vw, 116px); line-height: .98; }
+.pricing3 .pricing2-title h2 { font-size: clamp(48px, 4.9vw, 86px); line-height: .98; }
 .pricing3 .pricing2-title > p { max-width: 340px; font-size: 15px; color: #e5eeff; margin-bottom: 8px; }
-.pricing3 .pricing2-offer { grid-template-columns: 1.1fr 1fr; gap: 7vw; margin-top: 48px; border-top: 0; padding-top: 0; align-items: center; }
+.pricing3 .pricing2-offer { grid-template-columns: 1.1fr 1fr; gap: 7vw; margin-top: 36px; border-top: 0; padding-top: 0; align-items: start; }
 .pricing3 .pricing2-price { padding: 25px 0 35px; }
 .pricing3 .pricing2-price > .pricing3-label { font-size: 11px; letter-spacing: .1em; font-weight: 650; color: #c7e4ff; }
 .pricing3 .pricing2-price > .pricing3-number { margin: 24px 0 18px; gap: 14px; }
-.pricing3 .pricing2-price strong { font-size: clamp(160px, 21vw, 360px); font-weight: 550; letter-spacing: -.085em; color: #fff; text-shadow: 0 8px 60px #00083030; }
+.pricing3 .pricing2-price strong { font-size: clamp(160px, 19vw, 300px); font-weight: 550; letter-spacing: -.085em; color: #fff; text-shadow: 0 8px 60px #00083030; }
 .pricing3 .pricing2-price sup { font-size: clamp(27px, 3vw, 48px); padding-top: 20px; }
 .pricing3 .pricing2-price > .pricing3-period { display: block; font-size: 15px; letter-spacing: 0; font-weight: 650; margin-bottom: 28px; }
 .pricing3 .pricing2-price p { font-size: 15px; color: #e2eeff; line-height: 1.7; }

@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { clamp, galleryProgress } from "@/shared/motion/scroll-math";
 import { motion, useReducedMotion } from "motion/react";
 import {
@@ -127,7 +127,7 @@ export function Gallery() {
           <div>
             <span className="eyebrow">01 / Um novo olhar</span>
             <h2 id="gallery-heading">
-              Um universo
+              Um universo{" "}
               <br />
               <em>de possibilidades.</em>
             </h2>
@@ -182,6 +182,7 @@ export function Gallery() {
               layout={!reduced}
               transition={{ type: "spring", stiffness: 210, damping: 28 }}
               key={work.id}
+              style={{ "--art-ratio": work.largura / work.altura } as CSSProperties}
               className={`gallery3-art gallery3-art-${i % 4}`}
             >
               <LiquidArtwork

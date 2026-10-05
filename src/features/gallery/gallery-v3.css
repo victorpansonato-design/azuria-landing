@@ -1,4 +1,5 @@
 .gallery3 {
+  scroll-margin-top: -92px;
   position: relative;
   z-index: 3;
   background: var(--paper);
@@ -218,6 +219,19 @@
   .gallery3-pinned .zuri-curate { margin-top: 0; }
   .gallery3-pinned .gallery3-track { padding-top: 12px; padding-bottom: 8px; }
   .gallery3-pinned .gallery-bottom { margin-top: 0; }
+}
+@media (min-width: 900px) {
+  .gallery3-pinned .gallery3-heading { gap: 30px; align-items: center; }
+  .gallery3-pinned h2 { font-size: clamp(38px, 3.3vw, 60px); }
+  .gallery3-pinned h2 br { display: none; }
+  .gallery3-pinned h2 em { margin-left: .15em; }
+  .gallery3-pinned .intro-aside p { font-size: 12px; }
+  .gallery3-pinned .zuri-curate { margin-top: 4px; }
+  .gallery3-pinned .gallery3-art {
+    flex-basis: auto;
+    width: clamp(270px, calc((100svh - 320px) * var(--art-ratio, .8)), 620px);
+  }
+  .gallery3-pinned .gallery3-track { gap: clamp(30px, 3.5vw, 65px); }
 }
 @media (max-width: 899px) {
   .gallery3-stage { padding-top: 96px; padding-bottom: 56px; }
