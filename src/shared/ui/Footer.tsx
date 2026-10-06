@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Arrow, SocialIcon } from "./Icons";
 import { business, whatsapp } from "@/data/business";
 import { LiquidWordmark } from "./LiquidWordmark";
-export function Footer({ compact = false }: { compact?: boolean }) {
+export function Footer({ compact = false, ctaHref }: { compact?: boolean; ctaHref?: string }) {
   return (
     <footer
       id="contato"
@@ -28,7 +28,7 @@ export function Footer({ compact = false }: { compact?: boolean }) {
         </div>
       </div>
       <div className="footer2-links">
-        <Link className="button white" href={compact ? "/planos" : "#plano"}>
+        <Link className="button white" href={ctaHref ?? (compact ? "/planos" : "#plano")}>
           Dar uma direção à minha marca <Arrow diagonal />
         </Link>
         <a href={whatsapp()} target="_blank" rel="noreferrer">

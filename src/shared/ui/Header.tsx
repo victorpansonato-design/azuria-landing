@@ -63,7 +63,7 @@ export function Header() {
               Vamos começar <Arrow diagonal />
             </a>
           ) : (
-            <Link className="header-cta" href="/planos">
+            <Link className="header-cta" href={pathname === "/planos" ? "/contratar" : "/planos"}>
               Vamos começar <Arrow diagonal />
             </Link>
           )}
@@ -108,8 +108,8 @@ export function Header() {
                 <Arrow diagonal />
               </a>
             ) : (
-              <Link href="/planos" onClick={() => setMenu(false)}>
-                Conhecer o plano
+              <Link href={pathname === "/planos" ? "/contratar" : "/planos"} onClick={() => setMenu(false)}>
+                {pathname === "/planos" ? "Começar minha nova fase" : "Conhecer o plano"}
                 <Arrow diagonal />
               </Link>
             )}

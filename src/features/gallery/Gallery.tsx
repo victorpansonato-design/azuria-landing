@@ -2,239 +2,77 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { clamp, galleryProgress } from "@/shared/motion/scroll-math";
-import { motion, useReducedMotion } from "motion/react";
-import {
-  artworks,
-  directions,
-  initialArtworks,
-  type Artwork,
-} from "@/data/gallery";
+import { artworks, directions, initialArtworks, type Artwork } from "@/data/gallery";
 import { Arrow } from "@/shared/ui/Icons";
 import { Modal } from "@/shared/ui/Modal";
 import { LiquidArtwork } from "./LiquidArtwork";
 import "./gallery-v3.css";
+
 export function Gallery() {
   const [filter, setFilter] = useState("all");
   const [selected, setSelected] = useState<Artwork | null>(null);
-  const track = useRef<HTMLDivElement>(null);
   const section = useRef<HTMLElement>(null);
-  const progress = useRef<SVGPathElement>(null);
-  const reduced = useReducedMotion();
-  const works =
-    filter === "all"
-      ? initialArtworks
-      : artworks.filter((work) => work.directionId === filter);
+  const ribbon = useRef<SVGPathElement>(null);
+  const works = filter === "all" ? initialArtworks : artworks.filter((work) => work.directionId === filter);
   useEffect(() => {
-    const el = section.current!,
-      rail = track.current!;
-    const media = matchMedia(
-      "(min-width: 900px) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
-    );
-    let frame = 0,
-      travel = 0,
-      distance = 0;
-    const update = () => {
+    const el = section.current!;
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+    let frame = 0;
+    function update() {
       frame = 0;
-      const r = el.getBoundingClientRect();
-      if (r.bottom < 0 || r.top > innerHeight) return;
-      const p = media.matches
-        ? galleryProgress(r.top, travel)
-        : clamp((innerHeight - r.top) / (innerHeight + r.height));
-      if (media.matches) rail.scrollLeft = p * distance;
-      progress.current?.style.setProperty("stroke-dashoffset", String(1 - p));
-      el.style.setProperty("--gallery-p", String(p));
-    };
-    const measure = () => {
-      distance = Math.max(0, rail.scrollWidth - rail.clientWidth);
-      travel = Math.min(distance * 0.6, innerHeight * 3.5);
-      el.classList.toggle("gallery3-pinned", media.matches);
-      el.style.setProperty(
-        "--gallery-travel",
-        media.matches ? `${travel}px` : "0px",
-      );
-      update();
-    };
-    const schedule = () => {
-      if (!frame) frame = requestAnimationFrame(update);
-    };
-    const ro = new ResizeObserver(measure);
-    ro.observe(rail);
-    media.addEventListener("change", measure);
-    window.addEventListener("resize", measure);
+      const rect = el.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, (innerHeight - rect.top) / (rect.height + innerHeight * .15)));
+      ribbon.current?.style.setProperty("stroke-dashoffset", String(reduced.matches ? 0 : 1 - Math.min(1, p + .14)));
+    }
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    const ro = new ResizeObserver(schedule);
+    ro.observe(el);
     window.addEventListener("scroll", schedule, { passive: true });
-    measure();
-    return () => {
-      ro.disconnect();
-      cancelAnimationFrame(frame);
-      media.removeEventListener("change", measure);
-      window.removeEventListener("resize", measure);
-      window.removeEventListener("scroll", schedule);
-    };
-  }, [filter]);
-  function moveRail(direction: number) {
-    const rail = track.current!,
-      el = section.current!;
-    if (el.classList.contains("gallery3-pinned")) {
-      const distance = Math.max(1, rail.scrollWidth - rail.clientWidth);
-      const p = clamp(
-        (rail.scrollLeft + direction * rail.clientWidth * 0.55) / distance,
-      );
-      const top = el.getBoundingClientRect().top + scrollY;
-      const travel = parseFloat(el.style.getPropertyValue("--gallery-travel"));
-      window.dispatchEvent(
-        new CustomEvent("azuria-scroll-to", {
-          detail: { y: top + p * travel },
-        }),
-      );
-    } else
-      rail.scrollBy({
-        left: direction * rail.clientWidth * 0.7,
-        behavior: reduced ? "instant" : "smooth",
-      });
-  }
-  function choose(id: string) {
-    setFilter(id);
-    track.current?.scrollTo({ left: 0, behavior: "instant" });
-    const el = section.current;
-    if (el?.classList.contains("gallery3-pinned"))
-      window.dispatchEvent(
-        new CustomEvent("azuria-scroll-to", {
-          detail: {
-            y: el.getBoundingClientRect().top + scrollY,
-            immediate: true,
-          },
-        }),
-      );
-  }
+    window.addEventListener("resize", schedule);
+    reduced.addEventListener("change", schedule);
+    update();
+    return () => { cancelAnimationFrame(frame); ro.disconnect(); window.removeEventListener("scroll", schedule); window.removeEventListener("resize", schedule); reduced.removeEventListener("change", schedule); };
+  }, []);
+  function choose(id: string) { setFilter(id); }
   function preview(work: Artwork) {
     setSelected(work);
     window.dispatchEvent(new CustomEvent("zuri-look", { detail: work.id }));
   }
   return (
-    <section
-      id="estilos"
-      ref={section}
-      className="gallery3"
-      data-scene="gallery"
-      aria-labelledby="gallery-heading"
-    >
+    <section id="estilos" ref={section} className="gallery3" data-scene="gallery" aria-labelledby="gallery-heading">
       <div className="gallery3-stage">
-        <svg className="gallery3-thread" viewBox="0 0 1600 1000" preserveAspectRatio="none" aria-hidden="true">
-          <path ref={progress} pathLength="1" d="M-60 200 C240 420 580 70 840 260 S1490 260 1510 510 C1530 790 1100 620 920 820 S240 1020 -40 860" />
+        <svg className="gallery3-thread" viewBox="0 0 1600 5400" preserveAspectRatio="none" aria-hidden="true">
+          <path ref={ribbon} pathLength="1" d="M-80 120 C160 60 370 320 500 360 C730 440 710 140 560 180 C260 270 540 680 960 550 C1320 435 1220 740 1540 760 C1740 780 1660 1170 1390 1180 C1140 1190 1390 1470 1090 1550 C620 1680 200 1260 100 1560 C-80 1930 460 1810 700 2070 C990 2380 1200 1890 1430 2190 C1750 2600 1160 2490 1220 2840 C1300 3250 690 2980 500 3320 C280 3680 50 3360 -70 3730 C-230 4180 600 3810 980 4050 C1390 4310 1610 4120 1480 4490 C1350 4850 740 4530 620 4870 C530 5120 1230 5200 1630 5460" />
         </svg>
         <div className="gallery3-heading">
           <div>
             <span className="eyebrow">01 / Um novo olhar</span>
-            <h2 id="gallery-heading">
-              Um universo{" "}
-              <br />
-              <em>de possibilidades.</em>
-            </h2>
+            <h2 id="gallery-heading">Um universo<br /><em>de possibilidades.</em></h2>
           </div>
           <div className="intro-aside">
-            <p>
-              Sua marca pode ir além do óbvio.
-              <br />Explore o que acontece quando a imaginação ganha direção.
-            </p>
-            <button
-              className="zuri-curate"
-              onClick={() => window.dispatchEvent(new Event("zuri-curate"))}
-            >
-              <img src="/brand/zuri.svg" width="32" height="32" alt="" />
-              Zuri, me mostra um estilo
-              <Arrow />
+            <p>Sua marca pode ir além do óbvio.<br />Explore o que acontece quando a imaginação ganha direção.</p>
+            <button className="zuri-curate" onClick={() => window.dispatchEvent(new Event("zuri-curate"))}>
+              <img src="/brand/zuri.svg" width="32" height="32" alt="" />Zuri, me mostra um estilo<Arrow />
             </button>
           </div>
         </div>
-        <div
-          className="style-filters"
-          role="group"
-          aria-label="Filtrar por direção de arte"
-        >
-          <button aria-pressed={filter === "all"} onClick={() => choose("all")}>
-            Uma mistura de estilos
-          </button>
-          {directions.map((direction) => (
-            <button
-              key={direction.id}
-              aria-pressed={filter === direction.id}
-              onClick={() => choose(direction.id)}
-            >
-              {direction.name}
-            </button>
-          ))}
+        <div className="style-filters" role="group" aria-label="Filtrar por direção de arte">
+          <button aria-pressed={filter === "all"} onClick={() => choose("all")}>Uma mistura de estilos</button>
+          {directions.map((direction) => <button key={direction.id} aria-pressed={filter === direction.id} onClick={() => choose(direction.id)}>{direction.name}</button>)}
         </div>
-        <div
-          className="gallery3-track"
-          ref={track}
-          aria-label="Obras da curadoria"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
-              e.preventDefault();
-              moveRail(e.key === "ArrowRight" ? 1 : -1);
-            }
-          }}
-        >
-          {works.map((work, i) => (
-            <motion.figure
-              layout={!reduced}
-              transition={{ type: "spring", stiffness: 210, damping: 28 }}
-              key={work.id}
-              style={{ "--art-ratio": work.largura / work.altura } as CSSProperties}
-              className={`gallery3-art gallery3-art-${i % 4}`}
-            >
-              <LiquidArtwork
-                work={work}
-                onOpen={() => preview(work)}
-                onFocus={(e) => {
-                  if (
-                    !e.currentTarget.matches(":focus-visible") ||
-                    !section.current?.classList.contains("gallery3-pinned")
-                  )
-                    return;
-                  const rail = track.current!;
-                  const figure = e.currentTarget.closest("figure")!;
-                  const p = clamp((figure.offsetLeft - rail.clientWidth * 0.2) / Math.max(1, rail.scrollWidth - rail.clientWidth));
-                  const el = section.current!;
-                  window.dispatchEvent(
-                    new CustomEvent("azuria-scroll-to", {
-                      detail: {
-                        y:
-                          el.getBoundingClientRect().top +
-                          scrollY +
-                          p *
-                            parseFloat(
-                              el.style.getPropertyValue("--gallery-travel"),
-                            ),
-                        immediate: true,
-                      },
-                    }),
-                  );
-                }}
-              />
-              <figcaption>
-                <span>{work.directionName}</span>
-                <span>{work.titulo}</span>
-              </figcaption>
-            </motion.figure>
+        <div className="gallery3-track" aria-label="Obras da curadoria">
+          {[0, 1].map((column) => <div className="gallery3-column" key={column}>
+          {works.map((work, i) => ({ work, i })).filter(({ i }) => i % 2 === column).map(({ work, i }) => (
+            <figure key={work.id} style={{ "--art-ratio": work.largura / work.altura } as CSSProperties} className={`gallery3-art gallery3-art-${i % 4}`}>
+              <LiquidArtwork work={work} onOpen={() => preview(work)} />
+              <figcaption><span>{work.directionName}</span><span>{work.titulo}</span></figcaption>
+            </figure>
           ))}
+          </div>)}
         </div>
         <div className="gallery-bottom">
-          <p>
-            Curadoria de referências de direção de arte.
-            <br />
-            Obras de terceiros, apresentadas para explorar linguagens.
-          </p>
-          <div className="gallery-controls">
-            <button aria-label="Obras anteriores" onClick={() => moveRail(-1)}>
-              ←
-            </button>
-            <button aria-label="Próximas obras" onClick={() => moveRail(1)}>
-              →
-            </button>
-          </div>
+          <p>Curadoria de referências de direção de arte.<br />Obras de terceiros, apresentadas para explorar linguagens.</p>
+          <a href="#como-funciona" className="gallery3-next">Existe algo além.<Arrow diagonal /></a>
         </div>
       </div>
       {selected && (

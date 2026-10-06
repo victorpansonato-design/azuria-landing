@@ -12,6 +12,7 @@ import "lenis/dist/lenis.css";
 import "./v2.css";
 import "./immersive.css";
 import "./zuri-v3.css";
+import "./cinematic.css";
 const manrope = localFont({
   src: "../../public/brand/Manrope.ttf",
   display: "swap",

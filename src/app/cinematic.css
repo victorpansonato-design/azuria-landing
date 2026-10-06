@@ -1,0 +1,34 @@
+/* A single continuous exhibition: light, aperture, sculpture, cobalt, night. */
+.immersion-bridge { --passage-p: 0; position: relative; height: 150svh; background: var(--paper); }
+.immersion-bridge-stage { position: sticky; top: 0; height: 100svh; min-height: 600px; overflow: hidden; isolation: isolate; transform: translateZ(0); }
+.immersion-bridge-stage > svg { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; stroke: #3333ff; stroke-width: 32; stroke-linecap: round; }
+.immersion-bridge-dark { position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 65%, #102661, #02061a 65%); clip-path: ellipse(calc(3% + var(--passage-p) * 150%) calc(5% + var(--passage-p) * 150%) at 67% 52%); }
+.immersion-bridge-copy { position: absolute; inset: 0; padding: 100px var(--page-pad); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; mix-blend-mode: difference; color: white; transform: translateY(calc(var(--passage-p) * -28px)); }
+.immersion-bridge-copy .eyebrow { font-size: 11px; margin-bottom: 40px; color: inherit; }
+.immersion-bridge-copy h2 { font-size: clamp(62px, 7.6vw, 145px); font-weight: 500; line-height: 1.02; letter-spacing: -.055em; }
+.immersion-bridge-copy em { font-style: normal; }
+.immersion-bridge-cue { font-size: 10px; letter-spacing: .12em; margin-top: 64px; opacity: .65; }
+.pricing2.pricing3 { margin-top: -1px; background: #032080; }
+.pricing3-material { background-image: linear-gradient(180deg, #032080 0%, #032080bb 18%, #001a70cc 70%, #032080), url('/brand/azuria-blue-field-4k.webp'); }
+.footer2 { background: #030e50; }
+.footer2-sky { background: linear-gradient(180deg, #032080, transparent 32%), radial-gradient(ellipse at 45% 110%, #164bea, transparent 68%), radial-gradient(ellipse at 100% 0, #12308a, transparent 70%); }
+.footer2::before { height: 260px; background: #032080; clip-path: ellipse(85% calc((1 - var(--footer-p)) * 100%) at 25% 0%); }
+.footer2-top { transform: translateY(calc((1 - var(--footer-p)) * 36px)); }
+.footer2-bottom nav { margin-right: 100px; }
+.plan-vignette { z-index: 1000; }
+@media (max-width: 899px) {
+  .footer2-bottom nav { margin-right: 0; }
+  .footer2-bottom { padding-bottom: 90px; }
+  .immersion-bridge { height: 95svh; min-height: 540px; }
+  .immersion-bridge-stage { position: relative; height: 100%; min-height: 540px; }
+  .immersion-bridge-copy { padding-top: 80px; padding-bottom: 80px; }
+  .immersion-bridge-copy h2 { font-size: clamp(42px, 7.7vw, 76px); }
+  .immersion-bridge-stage > svg { stroke-width: 12; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .immersion-bridge { height: auto; }
+  .immersion-bridge-stage { position: relative; height: auto; min-height: 540px; }
+  .immersion-bridge-dark { clip-path: none; }
+  .immersion-bridge-copy, .footer2-top { transform: none; }
+  .footer2::before { display: none; }
+}

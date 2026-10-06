@@ -57,12 +57,18 @@ export function SceneMotion() {
       // The old scroll threshold changed the entire header midway through the Hero.
       if (header) {
         const galleryRect = measured.find(({ scene }) => scene.dataset.scene === "gallery")?.rect;
+        const bridge = measured.find(({ scene }) => scene.dataset.scene === "bridge");
         const smooth = (p: number) => p * p * (3 - 2 * p);
         let tone = pathname === "/" ? 0 : 1;
         if (pathname === "/" && galleryRect) {
           const enter = smooth(clamp((190 - galleryRect.top) / 230));
           const leave = smooth(clamp((galleryRect.bottom + 40) / 230));
           tone = Math.min(enter, leave);
+          if (bridge) {
+            const p = parseFloat(bridge.scene.style.getPropertyValue("--passage-p") || "0");
+            const surface = 1 - smooth(clamp((p - .25) / .3));
+            tone = Math.max(tone, smooth(clamp((190 - bridge.rect.top) / 230)) * smooth(clamp((bridge.rect.bottom + 40) / 230)) * surface);
+          }
           if (heroRect && desktop.matches && !reduced.matches) {
             const exit = clamp(-heroRect.top / Math.max(1, heroRect.height - height));
             if (heroRect.bottom > 190) tone = Math.max(tone, smooth(clamp((exit - 0.55) / 0.45)));

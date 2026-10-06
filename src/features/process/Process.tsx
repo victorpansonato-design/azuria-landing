@@ -28,7 +28,9 @@ export function Process() {
         return;
       }
       if (r.top > innerHeight || r.bottom < 0) return;
-      const p = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - innerHeight)));
+      // The author band is outside the pinned story; chapter controls use this same travel.
+      const travel = el.querySelector<HTMLElement>(".universe3-author")!.offsetTop - innerHeight;
+      const p = Math.min(1, Math.max(0, -r.top / Math.max(1, travel)));
       el.style.setProperty("--universe-p", p.toFixed(4));
       const chapter = Math.min(2, Math.floor(p * 3));
       setActive((current) => current === chapter ? current : chapter);
@@ -50,7 +52,8 @@ export function Process() {
   }, []);
   function chapter(i: number) {
     const el = section.current!;
-    const y = el.getBoundingClientRect().top + scrollY + (el.clientHeight - innerHeight) * ((i + .25) / 3);
+    const travel = el.querySelector<HTMLElement>(".universe3-author")!.offsetTop - innerHeight;
+    const y = el.getBoundingClientRect().top + scrollY + travel * ((i + .35) / 3);
     window.dispatchEvent(new CustomEvent("azuria-scroll-to", { detail: { y } }));
   }
   return (
